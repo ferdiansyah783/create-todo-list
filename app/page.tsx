@@ -1,8 +1,13 @@
+import Navbar from "@/components/Navbar";
+import TodoList from "@/components/TodoList";
 
-export default function Home() {
+const Home = async () => {
   return (
-   <main>
-    Home
-   </main>
-  )
-}
+    <main className="flex flex-col h-screen max-h-screen">
+      <Navbar />
+      <TodoList />
+    </main>
+  );
+};
+
+export default Home;
