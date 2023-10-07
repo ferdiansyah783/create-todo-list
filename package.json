@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.4.1",
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.4",
     "next": "13.5.4",
@@ -23,6 +24,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
+    "prisma": "^5.4.1",
     "tailwindcss": "^3",
     "typescript": "^5"
   }
