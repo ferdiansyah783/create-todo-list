@@ -26,6 +26,7 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
       const views = await fetchViews();
       setViews(views);
     };
+    
 
     fetchData();
   }, [refresh]);
