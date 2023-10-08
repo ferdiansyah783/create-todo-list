@@ -32,7 +32,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
   };
 
   return (
-    <section className="flex gap-x-3 px-10 py-5 flex-1 bg-[#1b263b] w-full overflow-x-auto">
+    <section className="flex gap-x-3 px-5 md:px-10 py-5 flex-1 bg-[#1b263b] w-full overflow-x-auto">
       {todoData?.boards?.map((board: any) => (
         <div
           key={board.id}
@@ -41,7 +41,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
           <div className="flex justify-between items-center px-3 pt-3">
             <div className="flex items-center space-x-1">
               <span className="w-3 2xl:w-4 h-3 2xl:h-4 rounded-full bg-pink-300 border-2 border-pink-500"></span>
-              <h1 className="text-[#e0e1dd] text-sm 2xl:text-base">
+              <h1 className="text-[#e0e1dd] font-semibold text-base md:text-sm 2xl:text-base">
                 {board.name}
               </h1>
             </div>
@@ -63,7 +63,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
             </button>
           </div>
 
-          <p className="text-[#e0e1dd] text-xs 2xl:text-base font-light px-3 mb-3">
+          <p className="text-[#e0e1dd] text-sm md:text-xs 2xl:text-base font-light px-3 mb-3">
             {board.description}
           </p>
 

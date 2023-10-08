@@ -62,7 +62,7 @@ const CreateViewModal = ({
   return (
     <div
       ref={modalRef}
-      className={`absolute z-50 top-[120%] left-[20px] transition-all duration-300 ease-in-out ${
+      className={`absolute z-50 top-[105px] md:top-[120%] left-8 md:left-[20px] transition-all duration-300 ease-in-out ${
         isActive ? "scale-100" : "scale-0"
       }`}
     >

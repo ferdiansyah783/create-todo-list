@@ -49,9 +49,9 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
   };
 
   return (
-    <nav className="flex flex-col px-10 pt-3 bg-[#0d1b2a] border-b border-pink-500 relative">
-      <div className="flex items-center justify-between">
-        <h1 className="font-bold text-[#e0e1dd] mb-2">Github Todo-List</h1>
+    <nav className="flex flex-col px-5 md:px-10 pt-4 md:pt-3 bg-[#0d1b2a] border-b border-pink-500">
+      <div className="flex items-center justify-between mb-2 md:mb-0">
+        <h1 className="font-bold text-lg md:text-base text-[#e0e1dd] mb-2">Github Todo-List</h1>
         <button
           onClick={onReset}
           type="button"
@@ -76,7 +76,7 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
           )}
         </button>
       </div>
-      <ul className="flex space-x-2 -mb-[1px]">
+      <ul className="flex space-x-2 -mb-[1px] overflow-x-auto">
         {views.map((view: { name: string }, i: Key) => (
           <li
             key={i}
@@ -85,7 +85,7 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
               activeNav === view.name
                 ? "bg-[#1b263b] border-t border-x border-pink-500 text-pink-500 rounded-t-md font-semibold"
                 : "text-[#e0e1dd]"
-            } px-5 py-1 cursor-pointer text-sm flex items-center gap-x-3`}
+            } px-5 py-1.5 cursor-pointer md:text-sm flex items-center gap-x-3 shrink-0`}
           >
             {view.name}
             {activeNav === view.name && (
@@ -104,10 +104,10 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
             )}
           </li>
         ))}
-        <li className="relative">
+        <li className="md:relative shrink-0">
           <div
             onClick={handleOpenModal}
-            className="flex items-center p-1 cursor-pointer text-[#e0e1dd]"
+            className="flex items-center p-1.5 cursor-pointer text-[#e0e1dd]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
