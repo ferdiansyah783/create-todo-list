@@ -3,16 +3,19 @@
 import { fetchViews } from "@/lib/actions/view.actions";
 import { Key, useEffect, useState } from "react";
 import CreateViewModal from "./CreateViewModal";
+import { resetDatabase } from "@/lib/actions/db.actions";
 
 interface Props {
   activeNav: string;
   setActiveNav: (item: string) => void;
+  onRefresh: () => void;
 }
 
-const Navbar = ({ activeNav, setActiveNav }: Props) => {
+const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
   const [views, setViews] = useState<any>([]);
   const [refresh, setRefresh] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRefresh = () => {
     setRefresh((prev) => !prev);
@@ -35,9 +38,43 @@ const Navbar = ({ activeNav, setActiveNav }: Props) => {
     setIsOpenModal(false);
   };
 
+  const onReset = async () => {
+    setIsLoading(true);
+    await resetDatabase();
+    handleRefresh();
+    onRefresh()
+    setActiveNav('view 1')
+    setIsLoading(false);
+  };
+
   return (
     <nav className="flex flex-col px-10 pt-3 bg-[#0d1b2a] border-b border-pink-500 relative">
-      <h1 className="font-bold text-[#e0e1dd] mb-2">Github Todo-List</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-[#e0e1dd] mb-2">Github Todo-List</h1>
+        <button
+          onClick={onReset}
+          type="button"
+          className="px-3 py-1 flex items-center gap-x-1 text-[#e0e1dd] bg-pink-500 rounded-md text-sm"
+        >
+          <p>reset</p>
+          {isLoading && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-4 h-4 animate-spin"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+          )}
+        </button>
+      </div>
       <ul className="flex space-x-2 -mb-[1px]">
         {views.map((view: { name: string }, i: Key) => (
           <li

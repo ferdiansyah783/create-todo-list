@@ -2,6 +2,7 @@
 
 import Board from "../models/board.model";
 import View from "../models/view.model";
+import Task from "../models/task.model";
 import { connectToDB } from "../mongoose";
 
 export async function createView(name: string) {
@@ -11,7 +12,7 @@ export async function createView(name: string) {
     const newView = new View({ name: name });
 
     const newBoard = new Board({
-      name: "hello world",
+      name: "Todo",
       description: "This item hasn't been started",
     });
 
@@ -55,7 +56,7 @@ export async function fetchView(name: string) {
     connectToDB();
 
     const view = await View.findOne({ name: name })
-      .populate({ path: "boards", populate: { path: "tasks" } })
+      .populate({ path: "boards", populate: { path: "tasks", model: Task } })
       .exec();
 
     const result = {
@@ -71,8 +72,8 @@ export async function fetchView(name: string) {
           description: task.description,
           status: task.status,
           createdAt: task.ceratedAt,
-          updatedAt: task.updatedAt
-        }))
+          updatedAt: task.updatedAt,
+        })),
       })),
     };
 

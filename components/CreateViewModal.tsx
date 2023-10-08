@@ -1,7 +1,7 @@
 "use client";
 
 import { createView } from "@/lib/actions/view.actions";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
   onRefresh: () => void;
@@ -10,9 +10,35 @@ interface Props {
   setActiveNav: (item: string) => void;
 }
 
-const CreateViewModal = ({ onRefresh, isActive, onClose, setActiveNav }: Props) => {
+const CreateViewModal = ({
+  onRefresh,
+  isActive,
+  onClose,
+  setActiveNav,
+}: Props) => {
   const [viewName, setViewName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const modalRef = useRef<any>();
+
+  const handleOutsideClick = (e: any) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+      setViewName("");
+    }
+  };
+
+  useEffect(() => {
+    if (isActive) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isActive]);
 
   const onSubmit = async (e: any) => {
     setIsLoading(true);
@@ -22,13 +48,20 @@ const CreateViewModal = ({ onRefresh, isActive, onClose, setActiveNav }: Props) 
 
     setIsLoading(false);
 
+    setViewName("");
     onRefresh();
     onClose();
-    setActiveNav(viewName)
+    setActiveNav(viewName);
+  };
+
+  const onCancel = () => {
+    onClose();
+    setViewName("");
   };
 
   return (
     <div
+      ref={modalRef}
       className={`absolute z-50 top-[120%] left-[20px] transition-all duration-300 ease-in-out ${
         isActive ? "scale-100" : "scale-0"
       }`}
@@ -41,11 +74,12 @@ const CreateViewModal = ({ onRefresh, isActive, onClose, setActiveNav }: Props) 
             className="w-full border border-pink-500 bg-[#1b263b] text-[#e0e1dd] py-1 px-3 focus:outline-none rounded-md placeholder:text-sm mb-3"
             placeholder="input view name"
             onChange={(e) => setViewName(e.target.value)}
+            value={viewName}
           />
           <div className="flex justify-end space-x-2 text-sm">
             <button
               type="button"
-              onClick={onClose}
+              onClick={onCancel}
               className="px-3 py-1 border rounded-md text-pink-500 font-semibold border-pink-500"
             >
               cancel

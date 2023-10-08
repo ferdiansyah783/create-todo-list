@@ -14,10 +14,10 @@ const CreateTaskModal = ({
   isTaskModalActive,
   handleCloseTaskModal,
   boardId,
-  handleRefresh
+  handleRefresh,
 }: Props) => {
   const [formData, setFormData] = useState({
-    'name': ''
+    name: "",
   });
 
   const modalRef = useRef<any>();
@@ -25,6 +25,7 @@ const CreateTaskModal = ({
   const handleOutsideClick = (e: any) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       handleCloseTaskModal();
+      setFormData({ name: "" });
     }
   };
 
@@ -41,14 +42,14 @@ const CreateTaskModal = ({
   }, [isTaskModalActive]);
 
   const onSubmit = async (e: any) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
+      e.preventDefault();
 
-        e.preventDefault();
-    
-        await createTask(boardId, formData.name);
-    
-        handleCloseTaskModal()
-        handleRefresh()
+      await createTask(boardId, formData.name);
+
+      handleCloseTaskModal();
+      setFormData({ name: "" });
+      handleRefresh();
     }
   };
 
@@ -82,6 +83,7 @@ const CreateTaskModal = ({
           className="flex-1 focus:outline-none bg-transparent px-3 text-[#e0e1dd] placeholder:text-sm"
           placeholder="start typing to create a draft"
           onChange={(e) => setFormData({ name: e.target.value })}
+          value={formData.name}
           onKeyDown={onSubmit}
         />
       </form>

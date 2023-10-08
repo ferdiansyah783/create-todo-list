@@ -29,12 +29,9 @@ const Main = () => {
     setRefresh((prev) => !prev);
   };
 
-
-  console.log(todoData)
-
   return (
     <div className="flex flex-col h-screen max-h-screen">
-      <Navbar activeNav={activeNav} setActiveNav={handleNavItem} />
+      <Navbar activeNav={activeNav} setActiveNav={handleNavItem} onRefresh={handleRefresh} />
       <TodoList todoData={todoData} handleRefresh={handleRefresh} />
     </div>
   );

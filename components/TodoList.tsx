@@ -32,11 +32,11 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
   };
 
   return (
-    <section className="flex gap-x-3 px-10 py-5 flex-1 bg-[#1b263b]">
+    <section className="flex gap-x-3 px-10 py-5 flex-1 bg-[#1b263b] w-full overflow-x-auto">
       {todoData?.boards?.map((board: any) => (
         <div
           key={board.id}
-          className="w-[360px] 2xl:w-[370px] h-full flex flex-col border border-pink-500 rounded-lg bg-[#0d1b2a] overflow-hidden"
+          className="w-[360px] 2xl:w-[370px] h-full flex flex-col shrink-0 border border-pink-500 rounded-lg bg-[#0d1b2a] overflow-hidden"
         >
           <div className="flex justify-between items-center px-3 pt-3">
             <div className="flex items-center space-x-1">
@@ -67,7 +67,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
             {board.description}
           </p>
 
-          <div className="flex-1 px-3 space-y-2">
+          <div className="flex-1 px-3 space-y-2 overflow-y-auto">
             {board.tasks.map((task: any) => (
               <div key={task.id} className="bg-[#1b263b] h-[70px] flex justify-between items-center p-3 rounded-md border border-pink-500 group">
                 <p className="text-pink-500 font-semibold text-sm">
@@ -120,7 +120,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
       <button
         type="button"
         onClick={handleOpenBoardModal}
-        className="w-10 h-10 bg-[#0d1b2a] border border-pink-500 rounded-md flex justify-center items-center"
+        className="w-10 h-10 bg-[#0d1b2a] border border-pink-500 rounded-md shrink-0 flex justify-center items-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

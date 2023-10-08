@@ -15,3 +15,18 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+::-webkit-scrollbar {
+  /* background-color: black; */
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e0e1dd;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(236 72 153);
+}
