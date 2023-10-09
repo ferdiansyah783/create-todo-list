@@ -45,8 +45,57 @@ export async function fetchBoard(boardId: string) {
       })),
     };
 
-    return result
+    return result;
   } catch (error: any) {
     throw new Error(`Failed to fetch board: ${error.message}`);
+  }
+}
+
+export async function updateDragAndDropBoard(source: any, destination: any) {
+  try {
+    connectToDB();
+
+    const boards = await Board.find();
+
+    const tsakSourceIndex = source.index;
+    const tsakDestinationIndex = destination.index;
+
+    // const boardSourceIndex = boards.findIndex(
+    //   (board: any) => board.id === source.droppableId
+    // );
+
+    // const boardDestinationIndex = boards.findIndex(
+    //   (board: any) => board.id === destination.droppableId
+    // );
+
+    // const newSourceTask = [...boards[boardSourceIndex].tasks];
+    const newSourceTask = await Board.findOne({ id: source.droppableId });
+
+    // const newDestinationTask =
+    //   source.droppableId !== destination.droppableId
+    //     ? [...boards[boardDestinationIndex].tasks]
+    //     : newSourceTask;
+    const newDestinationTask =
+      source.droppableId !== destination.droppableId
+        ? await Board.findOne({ id: destination.droppableId })
+        : await Board.findOne({ id: source.droppableId });;
+
+    // const [deletedTask] = newSourceTask.splice(tsakSourceIndex, 1);
+    newSourceTask.tasks.splice(tsakSourceIndex, 1);
+    await newSourceTask.save();
+
+    const firstElemen = newSourceTask.tasks.shift()
+
+    // newDestinationTask.splice(tsakDestinationIndex, 0, deletedTask);
+    newDestinationTask.tasks.splice(
+      tsakDestinationIndex,
+      0,
+      firstElemen
+    );
+    await newDestinationTask.save();
+
+    console.log('success drag and drop')
+  } catch (error) {
+    console.log(error);
   }
 }
