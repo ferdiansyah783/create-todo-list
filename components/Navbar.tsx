@@ -104,7 +104,7 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
             )}
           </li>
         ))}
-        <li className="md:relative shrink-0">
+        <li className="relative shrink-0">
           <div
             onClick={handleOpenModal}
             className="flex items-center p-1.5 cursor-pointer text-[#e0e1dd]"

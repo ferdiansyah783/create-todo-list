@@ -9,6 +9,12 @@ export async function createView(name: string) {
   try {
     connectToDB();
 
+    const view = await View.findOne({ name: name });
+
+    if (view) {
+      return 'error'
+    }
+
     const newView = new View({ name: name });
 
     const newBoard = new Board({

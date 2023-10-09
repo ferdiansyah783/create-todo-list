@@ -69,7 +69,10 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
 
           <div className="flex-1 px-3 space-y-2 overflow-y-auto">
             {board.tasks.map((task: any) => (
-              <div key={task.id} className="bg-[#1b263b] h-[70px] flex justify-between items-center p-3 rounded-md border border-pink-500 group">
+              <div
+                key={task.id}
+                className="bg-[#1b263b] h-[70px] flex justify-between items-center p-3 rounded-md border border-pink-500 group"
+              >
                 <p className="text-pink-500 font-semibold text-sm">
                   {task.name}
                 </p>

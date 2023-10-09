@@ -44,7 +44,9 @@ const CreateViewModal = ({
     setIsLoading(true);
     e.preventDefault();
 
-    await createView(viewName);
+    await createView(viewName).then((view) => {
+      if (view == 'error') return alert('view already exist!')
+    });
 
     setIsLoading(false);
 
@@ -62,7 +64,7 @@ const CreateViewModal = ({
   return (
     <div
       ref={modalRef}
-      className={`absolute z-50 top-[105px] md:top-[120%] left-8 md:left-[20px] transition-all duration-300 ease-in-out ${
+      className={`fixed z-50 top-28 right-8 md:right-[40%] transition-all duration-300 ease-in-out ${
         isActive ? "scale-100" : "scale-0"
       }`}
     >
