@@ -22,6 +22,8 @@ const Main = () => {
   useEffect(() => {
     if (activeNav) {
       fetchData(activeNav);
+    } else {
+      fetchData(activeNav);
     }
   }, [activeNav, refresh]);
 
