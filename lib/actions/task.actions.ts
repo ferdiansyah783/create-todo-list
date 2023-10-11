@@ -7,7 +7,7 @@ import { connectToDB } from "../mongoose";
 export async function createTask(
   boardId: string,
   name: string,
-  description = ''
+  description = ""
 ) {
   try {
     connectToDB();
@@ -20,14 +20,37 @@ export async function createTask(
       status: board.name,
     });
 
-    const createdTask = await newTask.save()
+    const createdTask = await newTask.save();
 
-    board.tasks.push(createdTask)
+    board.tasks.push(createdTask);
 
-    await board.save()
+    await board.save();
 
-    console.log('task created successfullu')
+    console.log("task created successfullu");
   } catch (error: any) {
-    throw new Error(`failed to create task: ${error.message}`)
+    throw new Error(`failed to create task: ${error.message}`);
+  }
+}
+
+export async function deleteTaskAndReferences(taskId: string) {
+  try {
+    connectToDB();
+
+    const task = await Task.findOne({ id: taskId });
+
+    if (!task) {
+      console.log("task not found");
+      return;
+    }
+
+    const taskToDeleteId = task._id;
+
+    await Task.deleteOne({ id: taskId });
+    await Board.updateMany(
+      { tasks: taskToDeleteId },
+      { $pull: { tasks: taskToDeleteId } }
+    );
+  } catch (error: any) {
+    throw new Error(`failed to delete task: ${error.message}`);
   }
 }
