@@ -49,13 +49,13 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
   };
 
   return (
-    <nav className="flex flex-col px-5 md:px-10 pt-4 md:pt-3 bg-[#0d1b2a] border-b border-pink-500">
+    <nav className="flex flex-col px-5 md:px-10 pt-4 md:pt-3 bg-primary border-b border-pink-500">
       <div className="flex items-center justify-between mb-2 md:mb-0">
-        <h1 className="font-bold text-lg md:text-base text-[#e0e1dd] mb-2">Github Todo-List</h1>
+        <h1 className="font-bold text-lg md:text-base text-tertiary mb-2">Github Todo-List</h1>
         <button
           onClick={onReset}
           type="button"
-          className="px-3 py-1 flex items-center gap-x-1 text-[#e0e1dd] bg-pink-500 rounded-md text-sm"
+          className="px-3 py-1 flex items-center gap-x-1 text-tertiary bg-pink-500 rounded-md text-sm"
         >
           <p>reset</p>
           {isLoading && (
@@ -83,8 +83,8 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
             onClick={() => setActiveNav(view.name)}
             className={`${
               activeNav === view.name
-                ? "bg-[#1b263b] border-t border-x border-pink-500 text-pink-500 rounded-t-md font-semibold"
-                : "text-[#e0e1dd]"
+                ? "bg-secondary border-t border-x border-pink-500 text-pink-500 rounded-t-md font-semibold"
+                : "text-tertiary"
             } px-5 py-1.5 cursor-pointer md:text-sm flex items-center gap-x-3 shrink-0`}
           >
             {view.name}
@@ -107,7 +107,7 @@ const Navbar = ({ activeNav, setActiveNav, onRefresh }: Props) => {
         <li className="relative shrink-0">
           <div
             onClick={handleOpenModal}
-            className="flex items-center p-1.5 cursor-pointer text-[#e0e1dd]"
+            className="flex items-center p-1.5 cursor-pointer text-tertiary"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

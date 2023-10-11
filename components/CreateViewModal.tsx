@@ -68,12 +68,12 @@ const CreateViewModal = ({
         isActive ? "scale-100" : "scale-0"
       }`}
     >
-      <div className="w-80 bg-[#1b263b] rounded-md border border-pink-500">
+      <div className="w-80 bg-secondary rounded-md border border-pink-500">
         <form onSubmit={onSubmit} className="p-3">
           <input
             name="view"
             type="text"
-            className="w-full border border-pink-500 bg-[#1b263b] text-[#e0e1dd] py-1 px-3 focus:outline-none rounded-md placeholder:text-sm mb-3"
+            className="w-full border border-pink-500 bg-secondary text-tertiary py-1 px-3 focus:outline-none rounded-md placeholder:text-sm mb-3"
             placeholder="input view name"
             onChange={(e) => setViewName(e.target.value)}
             value={viewName}

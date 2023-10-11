@@ -71,11 +71,11 @@ const CreateBoardModal = ({
         ref={modalRef}
         className={`w-80 ${
           isActive ? "scale-100" : "scale-0"
-        } transition-all duration-300 ease-in-out bg-[#0d1b2a] border border-pink-500 rounded-xl`}
+        } transition-all duration-300 ease-in-out bg-primary border border-pink-500 rounded-xl`}
         onSubmit={onSubmit}
       >
         <header className="flex justify-between items-center px-3 py-5 border-b border-pink-500">
-          <h1 className="text-[#e0e1dd] font-bold text-sm">New option</h1>
+          <h1 className="text-tertiary font-bold text-sm">New option</h1>
           <button
             onClick={onCancel}
             type="button"
@@ -87,7 +87,7 @@ const CreateBoardModal = ({
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-4 h-4 text-[#e0e1dd]"
+              className="w-4 h-4 text-tertiary"
             >
               <path
                 strokeLinecap="round"

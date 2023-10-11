@@ -105,27 +105,27 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <section className="flex gap-x-3 px-5 md:px-10 py-5 flex-1 bg-[#1b263b] w-full overflow-x-auto">
+      <section className="flex gap-x-3 px-5 md:px-10 py-5 flex-1 bg-secondary w-full overflow-x-auto">
         {boards?.map((board: any) => (
           <div
             key={board.id}
-            className="w-[360px] 2xl:w-[370px] h-full flex flex-col shrink-0 border border-pink-500 rounded-lg bg-[#0d1b2a] overflow-hidden"
+            className="w-[360px] 2xl:w-[370px] h-full flex flex-col shrink-0 border border-pink-500 rounded-lg bg-primary overflow-hidden"
           >
             <div className="flex justify-between items-center px-3 pt-3">
               <div className="flex items-center space-x-1">
                 <span className="w-3 2xl:w-4 h-3 2xl:h-4 rounded-full bg-pink-300 border-2 border-pink-500"></span>
-                <h1 className="text-[#e0e1dd] font-semibold text-base md:text-sm 2xl:text-base">
+                <h1 className="text-tertiary font-semibold text-base md:text-sm 2xl:text-base">
                   {board.name}
                 </h1>
               </div>
-              <button className="w-7 2xl:w-8 h-7 2xl:h-8 hover:bg-[#1b263b] rounded-md flex justify-center items-center">
+              <button className="w-7 2xl:w-8 h-7 2xl:h-8 hover:bg-secondary rounded-md flex justify-center items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="w-5 2xl:w-6 h-5 2xl:h-6 text-[#e0e1dd]"
+                  className="w-5 2xl:w-6 h-5 2xl:h-6 text-tertiary"
                 >
                   <path
                     strokeLinecap="round"
@@ -136,7 +136,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
               </button>
             </div>
 
-            <p className="text-[#e0e1dd] text-sm md:text-xs 2xl:text-base font-light px-3 mb-3">
+            <p className="text-tertiary text-sm md:text-xs 2xl:text-base font-light px-3 mb-3">
               {board.description || <span className="invisible">h</span>}
             </p>
 
@@ -158,7 +158,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
                           {...provided.dragHandleProps}
                           {...provided.draggableProps}
                           ref={provided.innerRef}
-                          className="bg-[#1b263b] h-[70px] flex justify-between items-center p-3 rounded-md border border-pink-500 group"
+                          className="bg-secondary h-[70px] flex justify-between items-center p-3 rounded-md border border-pink-500 group"
                         >
                           <p className="text-pink-500 font-semibold text-sm">
                             {task.name}
@@ -175,7 +175,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"
-                                className="w-5 h-5 text-[#e0e1dd] animate-spin"
+                                className="w-5 h-5 text-tertiary animate-spin"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -190,7 +190,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"
-                                className="w-5 h-5 text-[#e0e1dd]"
+                                className="w-5 h-5 text-tertiary"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -212,7 +212,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
             <button
               onClick={() => handleOpenTaskModal(board.id)}
               type="button"
-              className="flex items-center p-3 hover:bg-[#1b263b] hover:bg-opacity-100"
+              className="flex items-center p-3 hover:bg-secondary hover:bg-opacity-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +220,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.8"
                 stroke="currentColor"
-                className="w-5 h-5 text-[#e0e1dd]"
+                className="w-5 h-5 text-tertiary"
               >
                 <path
                   strokeLinecap="round"
@@ -228,7 +228,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
                   d="M12 6v12m6-6H6"
                 />
               </svg>
-              <p className="text-[#e0e1dd] text-sm 2xl:text-base">Add Item</p>
+              <p className="text-tertiary text-sm 2xl:text-base">Add Item</p>
             </button>
           </div>
         ))}
@@ -236,7 +236,7 @@ const TodoList = ({ todoData, handleRefresh }: Props) => {
         <button
           type="button"
           onClick={handleOpenBoardModal}
-          className="w-10 h-10 bg-[#0d1b2a] border border-pink-500 rounded-md shrink-0 flex justify-center items-center"
+          className="w-10 h-10 bg-primary border border-pink-500 rounded-md shrink-0 flex justify-center items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
